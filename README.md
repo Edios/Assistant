@@ -6,7 +6,7 @@ Save info to DB (cache)
   Can use redis or MongoDB
 
 Text mode [Interface]
-  Full sentences, filled with retrived data 
+  Full sentences, filled with retrieved data 
   Use sms to trigger for response* (+2FA security)
 
 Display mode [Interface]
