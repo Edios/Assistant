@@ -12,7 +12,7 @@ class Keys:
     google_api_key: str
 
 
-class BikeAssistant:
+class BikeStats:
     strava_api_key: str
 
     def __init__(self, strava_api_key):
@@ -36,14 +36,14 @@ class Assistant:
     display: Display
 
     @staticmethod
-    def runCommand(display:, data:dict):
+    def runCommand(display, data:dict):
         # Wrap running module
         pass
 
     def runStravaModule(self):
         # Send request to recive data from strava api
         # Use interface to display it to console as full sentence
-        bike_assistant = BikeAssistant(self.keys.strava_api_key)
+        bike_assistant = BikeStats(self.keys.strava_api_key)
         # bike_stats= BikeAssistant.getAllStats()
         self.runCommand(display=self.display, data=bike_assistant.getAllStats())
         pass
