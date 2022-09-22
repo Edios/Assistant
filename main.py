@@ -7,3 +7,10 @@ Print information as full sentences
 """
 
 #POC
+
+#Strava part:
+#Show name and kilometers of bike. Plan new service info +100 km
+
+
+
+#Sum up kilometers
