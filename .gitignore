@@ -1,2 +1,4 @@
 .strava
 UserData/*
+.idea
+__pycache__/

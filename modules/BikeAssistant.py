@@ -10,11 +10,16 @@ from Utils import send_get_request, read_user_data_from_json, USER_DATA_FOLDER, 
 class Bike:
     name: str
     distance: float
-    next_service: Union[None,float] = None
+    next_service: Union[None, float] = None
+
+
+    def __str__(self) -> str:
+        return f"\nBike name: {self.name}\nBike ridden distance:{self.distance}\nNext Service needed in {self.next_service} kilometers."
 
     def __post_init__(self):
         if not self.next_service:
-            self.next_service=self.distance+100
+            self.next_service = self.distance + 100
+
 
 @dataclass
 class BikeAssistant:
@@ -25,8 +30,8 @@ class BikeAssistant:
         bikes = [Bike(bike['name'], bike['converted_distance']) for bike in request['bikes']]
         return bikes
 
-    def bikes_service_info(self):
-        #TODO: Find better way to determine correct distance
+    def bikes_service_info(self) -> list[Bike]:
+        # TODO: Find better way to determine correct distance - Field: last service?
         strava_bike_info = self.get_bikes_data()
         # Get last known service info from json
         final_bike_service_info = []
@@ -41,11 +46,11 @@ class BikeAssistant:
                 else:
                     final_bike_service_info.append(strava_bike)
         else:
-            final_bike_service_info=strava_bike_info
+            final_bike_service_info = strava_bike_info
 
-        save_user_data_to_json(BIKE_SERVICE_INFO_FILENAME,[bike.__dict__ for bike in final_bike_service_info])
+        save_user_data_to_json(BIKE_SERVICE_INFO_FILENAME, [bike.__dict__ for bike in final_bike_service_info])
 
-
+        return final_bike_service_info
 
         # if no data, then self.next_service = distance+100
         # if data expired - passed 200 km then self.next_service = distance+100

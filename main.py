@@ -1,5 +1,7 @@
 import os
-from Strava import StravaClientData, StravaAuthorification
+
+from modules.BikeStatistic import BikeStatistics
+from modules.Strava import StravaClientData, StravaAuthorification
 from modules.BikeAssistant import BikeAssistant
 """
 Spawn assistant with personal info parameters
@@ -19,7 +21,15 @@ if __name__ == '__main__':
     #POC
     bikes=bike_assistant.get_bikes_data()
     bikes_info=bike_assistant.bikes_service_info()
-    print(bikes_info)
+    [print(single_bike) for single_bike in bikes]
+    #BikeStats
+    bike_stats= BikeStatistics(auth_service2.client_data.access_token)
+    #athlete id: 96942628
+    monthly_stats=bike_stats.get_monthly_statistics()
+    weekly_stats=bike_stats.get_weekly_statistics()
+    today_stats=bike_stats.get_today_statistics()
+    print(monthly_stats,weekly_stats,today_stats)
+
 
     #Strava part:
     #Show name and kilometers of bike. Plan new service info +100 km
