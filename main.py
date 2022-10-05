@@ -30,6 +30,12 @@ if __name__ == '__main__':
     today_stats=bike_stats.get_today_statistics()
     print(monthly_stats,weekly_stats,today_stats)
 
+    #Assistant module
+    """
+    Quote:
+    On this {day/month/year} you totally rode {ride_count} times and it took you {elapsed_time} {"hours" if elapsed_time/60 > 1 else "minutes"}. You have traveled in total {summary_distance} kilometers.  
+    """
+
 
     #Strava part:
     #Show name and kilometers of bike. Plan new service info +100 km
