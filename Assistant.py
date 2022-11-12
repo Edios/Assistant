@@ -30,16 +30,17 @@ class Display(metaclass=abc.ABCMeta):
         pass
 
     def input(self, message):
-        res=input(message)
+        res = input(message)
         return res
 
 
 class DisplayText(Display):
-    #TODO: Use curses libary: https://docs.python.org/3/howto/curses.html
+    # TODO: Use curses libary: https://docs.python.org/3/howto/curses.html
     def display_message(self, message):
         print("        +======================+")
         print(message)
         print("        +======================+")
+
 
 class DisplayMode(enum.Enum):
     # text=DisplayText()
@@ -52,12 +53,14 @@ class DisplayMode(enum.Enum):
         else:
             raise ValueError(f"Unknown mode: {mode}")
 
+
 class Module(enum.Enum):
-    BikeStatistics="Bike Statistic"
-    BikeAssistant="Bike Assistant"
+    BikeStatistics = "Bike Statistic"
+    BikeAssistant = "Bike Assistant"
 
     def __str__(self):
         return
+
 
 class Assistant:
     # personalData: dict
@@ -66,9 +69,9 @@ class Assistant:
     mode: DisplayMode
     modules: list[Module]
 
-    def __init__(self, mode,modules_list):
+    def __init__(self, mode, modules_list):
         self.mode = mode
-        self.modules=modules_list
+        self.modules = modules_list
         self.display = DisplayMode.initialize_display(self.mode)
         self.welcome_text()
         self.get_user_command()
@@ -92,9 +95,9 @@ class Assistant:
     #     # Fill config
     #     pass
     def get_user_command(self):
-        command=self.display.input("\nWhat module you want to use? ")
+        command = self.display.input("\nWhat module you want to use? ")
         print(command)
-        #TODO: Do something with command
+        # TODO: Do something with command
 
     def welcome_text(self):
         self.display.display_message(f"""
@@ -102,9 +105,3 @@ class Assistant:
         Im your personal assistant.
         Currently there are available modules: {', '.join([module.value for module in self.modules])}
         """)
-
-
-if __name__ == '__main__':
-    assistant = Assistant(DisplayMode.text,[Module.BikeAssistant,Module.BikeStatistics])
-    #assistant.get_user_command()
-# On this {day/month/year} you totally rode {ride_count} times and it took you {elapsed_time} {"hours" if elapsed_time/60 > 1 else "minutes"}. You have traveled in total {summary_distance} kilometers.
