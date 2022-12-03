@@ -2,3 +2,7 @@
 UserData/*
 .idea
 __pycache__/
+/cur.py
+/strava.json
+/strava_client_data
+/strava_client_data.json
